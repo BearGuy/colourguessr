@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #fdfdfd;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+}
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 0.5rem;
+  text-align: center;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ul {
+  list-style: none;
+  display: flex;
+}
+
+li {
+  margin-right: 1rem;
+}
+h1 {
+  color: #e74c3c;
+  margin-bottom: 0.5rem;
+}
+
+#color-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 230px;
+  margin: 0 auto;
+}
+
+#reference-color,
+#user-color {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #000;
+}
+
+#user-color {
+  background-color: #ffffff; /* Set initial user color to white */
+}
+
+#slider-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  max-width: 300px;
+}
+
+#slider-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  max-width: 300px;
+}
+
+#slider-container label {
+  margin-bottom: 5px;
+}
+
+#submit-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+
+#new-color-btn{
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #3498db; /* Complementary shade of blue */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#new-color-btn:hover {
+  background-color: #2980b9; /* Darker shade on hover */
+}
+
+
+#score {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Mobile styles */
+@media (max-width: 600px) {
+  main {
+    text-align: center;
+    height: 100vh;
+    display: grid;
+  }
+
+  #color-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #reference-color,
+  #user-color {
+    margin-bottom: 10px;
+  }
+
+  #slider-container {
+    margin-top: 20px;
+    width: 100vw;
+  }
+}
