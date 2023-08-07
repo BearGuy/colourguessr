@@ -12,8 +12,9 @@ body {
 main {
   max-width: 900px;
   margin: auto;
-  padding: 0.5rem;
+  padding: 2rem;
   text-align: center;
+  touch-action: none;
 }
 nav {
   display: flex;
@@ -98,7 +99,6 @@ h1 {
 
 
 #score {
-  margin-top: 20px;
   font-weight: bold;
 }
 

@@ -1,4 +1,4 @@
-const app_version = "colour-guessr-0.0.1"
+const app_version = "colour-guessr-0.0.2"
 const assets = [
   "/",
   "/index.html",
