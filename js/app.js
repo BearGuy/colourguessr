@@ -13,25 +13,41 @@ document.addEventListener("DOMContentLoaded", () => {
   newColorBtn.style.display = "none"
 
   let targetColor;
+  let alpha = 0.005; // adjust this based on the difficulty level
 
   function generateRandomColor() {
-    const red = Math.floor(Math.random() * 256);
-    const green = Math.floor(Math.random() * 256);
-    const blue = Math.floor(Math.random() * 256);
-    return { red, green, blue };
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return { r, g, b };
   }
 
   function displayColor(color, element) {
-    element.style.backgroundColor = `rgb(${color.red}, ${color.green}, ${color.blue})`;
+    element.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
   }
 
-  function calculateScore(userColor, targetColor) {
+  function oldCalculateScore(userColor, targetColor) {
     const distance = Math.sqrt(
       (userColor.red - targetColor.red) ** 2 +
       (userColor.green - targetColor.green) ** 2 +
       (userColor.blue - targetColor.blue) ** 2
     );
     return Math.round(100 - (distance / 441) * 100); // 441 is the max distance between two RGB colors
+  }
+
+  // Helper function to calculate the Euclidean distance between two colors in RGB space
+  function colorDistance(color1, color2) {
+    const diffR = color1.r - color2.r;
+    const diffG = color1.g - color2.g;
+    const diffB = color1.b - color2.b;
+    return Math.sqrt(diffR * diffR + diffG * diffG + diffB * diffB);
+  }
+
+  // Scoring algorithm with exponential function
+  function calculateScore(userColor, targetColor, alpha) {
+    const difference = colorDistance(userColor, targetColor);
+    const score = 100 * Math.exp(-alpha * difference);
+    return Math.round(score);
   }
 
   function updateScoreDisplay(score) {
@@ -58,20 +74,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateUserColor() {
     const userColor = {
-      red: parseInt(redSlider.value),
-      green: parseInt(greenSlider.value),
-      blue: parseInt(blueSlider.value),
+      r: parseInt(redSlider.value),
+      g: parseInt(greenSlider.value),
+      b: parseInt(blueSlider.value),
     };
     displayColor(userColor, userColorDiv);
   }
 
   function handleSubmitClick() {
     const userColor = {
-      red: parseInt(redSlider.value),
-      green: parseInt(greenSlider.value),
-      blue: parseInt(blueSlider.value),
+      r: parseInt(redSlider.value),
+      g: parseInt(greenSlider.value),
+      b: parseInt(blueSlider.value),
     };
-    const score = calculateScore(userColor, targetColor);
+    const score = calculateScore(userColor, targetColor, alpha);
     updateScoreDisplay(score);
     toggleButtons();
   }
