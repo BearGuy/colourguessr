@@ -6,7 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const greenSlider = document.getElementById("green-slider");
   const blueSlider = document.getElementById("blue-slider");
   const submitBtn = document.getElementById("submit-btn");
+  const newColorBtn = document.getElementById("new-color-btn");
   const scoreDisplay = document.getElementById("score");
+
+  submitBtn.style.display = "block"
+  newColorBtn.style.display = "none"
 
   let targetColor;
 
@@ -34,12 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
     scoreDisplay.textContent = `Score: ${score}/100`;
   }
 
+  function toggleButtons() {
+    submitBtnCurrentDisplay = submitBtn.style.display;
+    newColorBtnCurrentDisplay = newColorBtn.style.display;
+
+    submitBtn.style.display = submitBtnCurrentDisplay == "none" ? "block" : "none";
+    newColorBtn.style.display = newColorBtnCurrentDisplay == "none" ? "block" : "none";
+  }
+
   function startNewRound() {
     targetColor = generateRandomColor();
     displayColor(targetColor, referenceColorDiv);
     redSlider.value = 127;
     greenSlider.value = 127;
     blueSlider.value = 127;
+    submitBtn.disabled = false;
     updateUserColor();
   }
 
@@ -60,17 +73,22 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     const score = calculateScore(userColor, targetColor);
     updateScoreDisplay(score);
-    startNewRound();
+    toggleButtons();
+  }
+
+  function handleNewColorClick() {
+      startNewRound();
+      toggleButtons();
   }
 
   updateScoreDisplay("")
 
-  document.getElementById("new-color-btn").addEventListener("click", startNewRound);
 
   redSlider.addEventListener("input", updateUserColor);
   greenSlider.addEventListener("input", updateUserColor);
   blueSlider.addEventListener("input", updateUserColor);
   submitBtn.addEventListener("click", handleSubmitClick);
+  newColorBtn.addEventListener("click", handleNewColorClick);
 
   startNewRound();
 });

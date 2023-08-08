@@ -84,7 +84,10 @@ h1 {
 }
 
 input[type="range"] {
-  margin-top: 30px;
+  margin-top: 15px;
+  padding: 10px 0px;
+  height: 40px;
+  border-radius: 20px;
 }
 
 
@@ -105,7 +108,6 @@ label {
 
 #new-color-btn{
   display: block;
-  margin-top: 20px;
   background-color: #3498db; /* Complementary shade of blue */
   color: #fff;
   border: none;
@@ -150,6 +152,10 @@ button {
   #slider-container {
     margin-top: 20px;
     width: 100vw;
+  }
+
+  input[type="range"] {
+    touch-action: manipulation;
   }
 
     button {
