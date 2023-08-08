@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function startNewRound() {
     targetColor = generateRandomColor();
     displayColor(targetColor, referenceColorDiv);
-    updateScoreDisplay("");
     redSlider.value = 127;
     greenSlider.value = 127;
     blueSlider.value = 127;
@@ -61,7 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     const score = calculateScore(userColor, targetColor);
     updateScoreDisplay(score);
+    startNewRound();
   }
+
+  updateScoreDisplay("")
 
   document.getElementById("new-color-btn").addEventListener("click", startNewRound);
 
