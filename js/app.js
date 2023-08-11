@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   newColorBtn.style.display = "none"
 
   let targetColor;
-  let alpha = 0.005; // adjust this based on the difficulty level
+  let alpha = 0.01; // adjust this based on the difficulty level
 
   function generateRandomColor() {
     const r = Math.floor(Math.random() * 256);
